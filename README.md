@@ -1,6 +1,8 @@
 # presensi
 
-A new Flutter project.
+# 362358302047_AHMAD DIKY DHARMAWAN
+
+![gif](assets/images/001.gif);
 
 ## Getting Started
 
