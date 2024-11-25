@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/attendance_provider.dart';
+import '../providers/kehadiran_provider.dart';
 
-class AttendanceScreen extends StatelessWidget {
-  const AttendanceScreen({Key? key}) : super(key: key);
+class TampilanKehadiran extends StatelessWidget {
+  const TampilanKehadiran({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,18 +19,18 @@ class AttendanceScreen extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: Consumer<AttendanceProvider>(
+            child: Consumer<KehadiranProvider>(
               builder: (context, provider, _) {
                 return ListView.builder(
-                  itemCount: provider.students.length,
+                  itemCount: provider.siswa.length,
                   itemBuilder: (context, index) {
-                    final student = provider.students[index];
+                    final student = provider.siswa[index];
                     return ListTile(
                       title: Text(student.name),
-                      subtitle: Text('NIS: ${student.studentId}'),
+                      subtitle: Text('NIS: ${student.siswaId}'),
                       trailing: Checkbox(
                         value: student.isPresent,
-                        onChanged: (_) => provider.toggleAttendance(index),
+                        onChanged: (_) => provider.toggleKehadiran(index),
                       ),
                     );
                   },
@@ -40,10 +40,10 @@ class AttendanceScreen extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: Consumer<AttendanceProvider>(
+      floatingActionButton: Consumer<KehadiranProvider>(
         builder: (context, provider, _) {
           return FloatingActionButton(
-            onPressed: provider.hasStudents ? provider.saveAttendance : null,
+            onPressed: provider.hasSiswa ? provider.simpanKehadiran : null,
             backgroundColor: Colors.green,
             child: const Icon(
               Icons.save,

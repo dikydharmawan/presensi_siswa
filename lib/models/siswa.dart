@@ -1,11 +1,11 @@
-class Student {
+class Siswa {
   final String name;
-  final String studentId;
+  final String siswaId;
   bool _isPresent = false;
 
-  Student({
+  Siswa({
     required this.name,
-    required this.studentId,
+    required this.siswaId,
   });
 
   bool get isPresent => _isPresent;

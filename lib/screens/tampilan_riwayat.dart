@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/attendance_provider.dart';
+import '../providers/kehadiran_provider.dart';
 import 'package:intl/intl.dart';
 
-class HistoryScreen extends StatelessWidget {
-  const HistoryScreen({Key? key}) : super(key: key);
+class TampilanRiwayat extends StatelessWidget {
+  const TampilanRiwayat({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) {
-        return Consumer<AttendanceProvider>(
-          builder: (context, attendanceProvider, child) {
-            if (attendanceProvider.records.isEmpty) {
+        return Consumer<KehadiranProvider>(
+          builder: (context, kehadiranProvider, child) {
+            if (kehadiranProvider.catatan.isEmpty) {
               return const Center(
                 child: Text('Belum ada riwayat presensi'),
               );
             }
 
             return ListView.builder(
-              itemCount: attendanceProvider.records.length,
+              itemCount: kehadiranProvider.catatan.length,
               itemBuilder: (context, index) {
-                final record = attendanceProvider.records[index];
+                final record = kehadiranProvider.catatan[index];
                 return Card(
                   margin: const EdgeInsets.all(8.0),
                   child: ExpansionTile(
@@ -29,15 +29,15 @@ class HistoryScreen extends StatelessWidget {
                       'Tanggal: ${DateFormat('dd/MM/yyyy HH:mm').format(record.date)}',
                     ),
                     subtitle: Text(
-                      'Hadir: ${record.presentCount}, Tidak Hadir: ${record.absentCount}',
+                      'Hadir: ${record.jumlahhadir}, Tidak Hadir: ${record.jumlahAbsen}',
                     ),
                     children: [
-                      if (record.presentStudents.isNotEmpty)
+                      if (record.siswaHadir.isNotEmpty)
                         ListTile(
                           title: const Text('Siswa Hadir:'),
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: record.presentStudents
+                            children: record.siswaHadir
                                 .map((student) => Padding(
                                       padding: const EdgeInsets.only(left: 16.0),
                                       child: Text('${student.name}'),
@@ -45,15 +45,15 @@ class HistoryScreen extends StatelessWidget {
                                 .toList(),
                           ),
                         ),
-                      if (record.absentStudents.isNotEmpty)
+                      if (record.siswaAbsen.isNotEmpty)
                         ListTile(
                           title: const Text('Siswa Tidak Hadir:'),
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: record.absentStudents
+                            children: record.siswaAbsen
                                 .map((student) => Padding(
                                       padding: const EdgeInsets.only(left: 16.0),
-                                      child: Text('${student.name} (${student.studentId})'),
+                                      child: Text('${student.name} (${student.siswaId})'),
                                     ))
                                 .toList(),
                           ),

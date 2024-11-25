@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'providers/attendance_provider.dart';
-import 'screens/home_screen.dart';
+import 'providers/kehadiran_provider.dart';
+import 'screens/tampilan_home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => AttendanceProvider(),
+      create: (_) => KehadiranProvider(),
       child: MaterialApp(
         title: 'Monitoring Kehadiran Siswa',
         theme: ThemeData(
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
         ),
         debugShowCheckedModeBanner: false,
-        home: const HomeScreen(),
+        home: const TampilanHome(),
       ),
     );
   }

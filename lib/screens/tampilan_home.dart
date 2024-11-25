@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'attendance_screen.dart';
-import 'history_screen.dart';
+import 'tampilan_kehadiran.dart';
+import 'tampilan_riwayat.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class TampilanHome extends StatefulWidget {
+  const TampilanHome({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<TampilanHome> createState() => _TampilanHomestate();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _TampilanHomestate extends State<TampilanHome> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-    const AttendanceScreen(),
-    const HistoryScreen(),
+    const TampilanKehadiran(),
+    const TampilanRiwayat(),
   ];
 
   @override
